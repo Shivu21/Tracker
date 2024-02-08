@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tracker/Login_Screens/SignUp_Page.dart';
 import 'package:tracker/Login_Screens/welcome_page.dart';
 
 import '../Login_Screens/login_page.dart';

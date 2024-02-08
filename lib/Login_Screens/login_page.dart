@@ -1,7 +1,8 @@
 import "package:flutter/material.dart";
+import "package:tracker/home_page.dart";
 
 class Login_Page extends StatefulWidget {
-  const Login_Page({super.key});
+  const Login_Page({Key? key}) : super(key: key);
 
   @override
   State<Login_Page> createState() => _Login_PageState();
@@ -10,12 +11,15 @@ class Login_Page extends StatefulWidget {
 class _Login_PageState extends State<Login_Page> {
   @override
   Widget build(BuildContext context) {
+    double screenHeight = MediaQuery.of(context).size.height;
+    double screenWidth = MediaQuery.of(context).size.width;
+
     return Scaffold(
       body: Stack(
         children: [
           Container(
-            height: double.infinity,
-            width: double.infinity,
+            height: screenHeight,
+            width: screenWidth,
             decoration: const BoxDecoration(
               gradient: LinearGradient(colors: [
                 Color(0xFF43CBFF),
@@ -28,14 +32,14 @@ class _Login_PageState extends State<Login_Page> {
                 "Hello\nSign In!",
                 style: TextStyle(
                   fontSize: 28,
-                  color: Colors.black,
+                  color: Colors.white,
                   fontWeight: FontWeight.bold,
                 ),
               ),
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(top: 200.0),
+            padding: EdgeInsets.only(top: screenHeight * 0.2),
             child: Container(
               decoration: const BoxDecoration(
                 borderRadius: BorderRadius.only(
@@ -43,10 +47,10 @@ class _Login_PageState extends State<Login_Page> {
                     topRight: Radius.circular(40)),
                 color: Colors.white,
               ),
-              height: double.infinity,
-              width: double.infinity,
+              height: screenHeight,
+              width: screenWidth,
               child: Padding(
-                padding: const EdgeInsets.only(left: 20, right: 20),
+                padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.05),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -58,7 +62,10 @@ class _Login_PageState extends State<Login_Page> {
                         ),
                         label: Text(
                           "Email",
-                          style: TextStyle(color: Color(0xFF43CBFF)),
+                          style: TextStyle(
+                              color: Color(0xFF43CBFF),
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20),
                         ),
                       ),
                     ),
@@ -70,12 +77,15 @@ class _Login_PageState extends State<Login_Page> {
                         ),
                         label: Text(
                           "Password",
-                          style: TextStyle(color: Color(0xFF43CBFF)),
+                          style: TextStyle(
+                              color: Color(0xFF43CBFF),
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20),
                         ),
                       ),
                     ),
-                    const SizedBox(
-                      height: 20,
+                    SizedBox(
+                      height: screenHeight * 0.02,
                     ),
                     const Align(
                       alignment: Alignment.centerRight,
@@ -87,31 +97,41 @@ class _Login_PageState extends State<Login_Page> {
                             color: Color(0xFF43CBFF)),
                       ),
                     ),
-                    const SizedBox(
-                      height: 100,
+                    SizedBox(
+                      height: screenHeight * 0.18,
                     ),
-                    Container(
-                      height: 54,
-                      width: 300,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(28),
-                        gradient: const LinearGradient(
-                          colors: [
-                            Color(0xFF43CBFF),
-                            Color(0xFF9708CC),
-                          ],
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => Home_Page()),
+                        );
+                      },
+                      child: Container(
+                        height: screenHeight * 0.07,
+                        width: screenWidth * 0.8,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(28),
+                          gradient: const LinearGradient(
+                            colors: [
+                              Color(0xFF43CBFF),
+                              Color(0xFF9708CC),
+                            ],
+                          ),
+                        ),
+                        child: const Center(
+                          child: Text(
+                            "SIGN IN",
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold),
+                          ),
                         ),
                       ),
-                      child: const Center(
-                        child: Text(
-                          "SING IN",
-                          style: TextStyle(
-                              fontSize: 20, fontWeight: FontWeight.bold),
-                        ),
-                      ),
                     ),
-                    const SizedBox(
-                      height: 70,
+                    SizedBox(
+                      height: screenHeight * 0.07,
                     ),
                     Align(
                       alignment: Alignment.bottomRight,

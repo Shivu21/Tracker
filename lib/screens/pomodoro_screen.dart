@@ -119,12 +119,15 @@ class _PomoDoro_ScreenState extends State<PomoDoro_Screen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             ElevatedButton(
-              child: const Text('Description'),
+              child: const Text(
+                'Description',
+                style: TextStyle(fontSize: 20),
+              ),
               onPressed: () async {
                 final result = await showDialog<String>(
                   context: context,
                   builder: (context) => AlertDialog(
-                    title: const Text('Set Description'),
+                    title: const Center(child: Text('Set Description')),
                     content: TextField(
                       onSubmitted: (value) => Navigator.of(context).pop(value),
                     ),
@@ -141,19 +144,22 @@ class _PomoDoro_ScreenState extends State<PomoDoro_Screen> {
               _description,
               style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: 10),
             Text(
               '${minutes.toString().padLeft(2, '0')}:${seconds.toString().padLeft(2, '0')}',
               style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 60),
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: 30),
             ElevatedButton(
-              child: const Text('Custom'),
+              child: const Text(
+                'Custom',
+                style: TextStyle(fontSize: 20),
+              ),
               onPressed: () async {
                 final result = await showDialog<int>(
                   context: context,
                   builder: (context) => AlertDialog(
-                    title: const Text('Set Time'),
+                    title: const Center(child: Text('Set Time')),
                     content: TextField(
                       keyboardType: TextInputType.number,
                       onSubmitted: (value) =>

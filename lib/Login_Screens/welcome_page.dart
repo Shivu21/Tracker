@@ -7,90 +7,108 @@ class WelcomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenHeight = MediaQuery.of(context).size.height;
+    final screenWidth = MediaQuery.of(context).size.width;
+
     return Scaffold(
       body: Container(
-        height: double.infinity,
-        width: double.infinity,
+        height: screenHeight,
+        width: screenWidth,
         decoration: const BoxDecoration(
             gradient: LinearGradient(colors: [
           Color(0xFF43CBFF),
           Color(0xFF9708CC),
         ])),
-        child: Column(children: [
-          const Padding(
-            padding: EdgeInsets.only(top: 200.0),
-            child: Image(image: AssetImage('assets/images/.png')),
-          ),
-          const SizedBox(
-            height: 100,
-          ),
-          const Text(
-            'Welcome Back',
-            style: TextStyle(fontSize: 30, color: Colors.white),
-          ),
-          const SizedBox(
-            height: 30,
-          ),
-          GestureDetector(
-            onTap: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => const Login_Page()));
-            },
-            child: Container(
-              height: 53,
-              width: 320,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(30),
-                border: Border.all(color: Colors.white),
-              ),
-              child: const Center(
-                child: Text(
-                  'SIGN IN',
-                  style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white),
+        child: SingleChildScrollView(
+          child: Column(children: [
+            Padding(
+              padding: EdgeInsets.only(top: screenHeight * 0.2),
+              child: Image(
+                  image: AssetImage('assets/images/.png'),
+                  height: screenHeight * 0.2),
+            ),
+            SizedBox(
+              height: screenHeight * 0.1,
+            ),
+            const Text(
+              'Welcome Back',
+              style: TextStyle(fontSize: 30, color: Colors.white),
+            ),
+            SizedBox(
+              height: screenHeight * 0.03,
+            ),
+            GestureDetector(
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const Login_Page()));
+              },
+              child: Container(
+                height: screenHeight * 0.07,
+                width: screenWidth * 0.8,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(30),
+                  border: Border.all(color: Colors.white),
+                ),
+                child: const Center(
+                  child: Text(
+                    'SIGN IN',
+                    style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white),
+                  ),
                 ),
               ),
             ),
-          ),
-          const SizedBox(
-            height: 30,
-          ),
-          GestureDetector(
-            onTap: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => const SignUp_Page()));
-            },
-            child: Container(
-              height: 53,
-              width: 320,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(30),
-                border: Border.all(color: Colors.white),
-              ),
-              child: const Center(
-                child: Text(
-                  'SIGN UP',
-                  style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black),
+            SizedBox(
+              height: screenHeight * 0.03,
+            ),
+            GestureDetector(
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const SignUp_Page()));
+              },
+              child: Container(
+                height: screenHeight * 0.07,
+                width: screenWidth * 0.8,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(30),
+                  border: Border.all(color: Colors.white),
+                ),
+                child: const Center(
+                  child: Text(
+                    'SIGN UP',
+                    style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black),
+                  ),
                 ),
               ),
             ),
-          ),
-          const Spacer(),
-          const Text(
-            'Login with Social Media',
-            style: TextStyle(fontSize: 17, color: Colors.white),
-          ), //
-          const SizedBox(
-            height: 12,
-          ),
-          const Image(image: AssetImage('assets/images/social.png'))
-        ]),
+            SizedBox(
+              height: screenHeight * 0.1, // replace Spacer with SizedBox
+            ),
+            const Text(
+              'Login with Social Media',
+              style: TextStyle(fontSize: 17, color: Colors.white),
+            ),
+            SizedBox(
+              height: screenHeight * 0.01,
+            ),
+            Image(
+                image: AssetImage('assets/images/social.png'),
+                height: screenHeight * 0.2),
+            SizedBox(
+              height: screenHeight * 0.01,
+            ),
+          ]),
+        ),
       ),
     );
   }

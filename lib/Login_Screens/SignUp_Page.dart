@@ -9,7 +9,6 @@ class SignUp_Page extends StatefulWidget {
 }
 
 class _SignUp_PageState extends State<SignUp_Page> {
-  final _formKey = GlobalKey<FormState>();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   final _auth = FirebaseAuth.instance;
@@ -23,74 +22,170 @@ class _SignUp_PageState extends State<SignUp_Page> {
 
   @override
   Widget build(BuildContext context) {
+    double screenHeight = MediaQuery.of(context).size.height;
+    double screenWidth = MediaQuery.of(context).size.width;
+
     return Scaffold(
-      body: Container(
-        decoration: const BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage("assets/images/social.png"),
-            fit: BoxFit.cover,
+      body: Stack(
+        children: [
+          Container(
+            height: screenHeight,
+            width: screenWidth,
+            decoration: const BoxDecoration(
+              gradient: LinearGradient(colors: [
+                Color(0xFF43CBFF),
+                Color(0xFF9708CC),
+              ]),
+            ),
+            child: const Padding(
+              padding: EdgeInsets.only(top: 60.0, left: 20),
+              child: Text(
+                "Create Your\nAccount!",
+                style: TextStyle(
+                  fontSize: 28,
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
           ),
-        ),
-        child: Form(
-          key: _formKey,
-          child: Column(
-            children: <Widget>[
-              TextFormField(
-                controller: _emailController,
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please enter your email';
-                  }
-                  return null;
-                },
+          Padding(
+            padding: EdgeInsets.only(top: screenHeight * 0.2),
+            child: Container(
+              decoration: const BoxDecoration(
+                borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(40),
+                    topRight: Radius.circular(40)),
+                color: Colors.white,
               ),
-              TextFormField(
-                controller: _passwordController,
-                obscureText: true,
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please enter your password';
-                  }
-                  return null;
-                },
+              height: screenHeight,
+              width: screenWidth,
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.05),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const TextField(
+                      decoration: InputDecoration(
+                        suffixIcon: Icon(
+                          Icons.check,
+                          color: Colors.grey,
+                        ),
+                        label: Text(
+                          "Full Name",
+                          style: TextStyle(
+                              color: Color(0xFF43CBFF),
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20),
+                        ),
+                      ),
+                    ),
+                    const TextField(
+                      decoration: InputDecoration(
+                        suffixIcon: Icon(
+                          Icons.check,
+                          color: Colors.grey,
+                        ),
+                        label: Text(
+                          "Phone or Gmail",
+                          style: TextStyle(
+                              color: Color(0xFF43CBFF),
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20),
+                        ),
+                      ),
+                    ),
+                    const TextField(
+                      decoration: InputDecoration(
+                        suffixIcon: Icon(
+                          Icons.visibility_off,
+                          color: Colors.grey,
+                        ),
+                        label: Text(
+                          "Password",
+                          style: TextStyle(
+                              color: Color(0xFF43CBFF),
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20),
+                        ),
+                      ),
+                    ),
+                    const TextField(
+                      decoration: InputDecoration(
+                        suffixIcon: Icon(
+                          Icons.visibility_off,
+                          color: Colors.grey,
+                        ),
+                        label: Text(
+                          "Confirm Password",
+                          style: TextStyle(
+                              color: Color(0xFF43CBFF),
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: screenHeight * 0.1,
+                    ),
+                    Container(
+                      height: screenHeight * 0.07,
+                      width: screenWidth * 0.8,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(28),
+                        gradient: const LinearGradient(
+                          colors: [
+                            Color(0xFF43CBFF),
+                            Color(0xFF9708CC),
+                          ],
+                        ),
+                      ),
+                      child: const Center(
+                        child: Text(
+                          "SIGN UP",
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: screenHeight * 0.1,
+                    ),
+                    Align(
+                      alignment: Alignment.bottomRight,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          const Text(
+                            "Don't have account?",
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: Colors.grey),
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.pushNamed(context, '/login');
+                            },
+                            child: const Text(
+                              "Sign In",
+                              style: TextStyle(
+                                  color: Color(0xFF43CBFF),
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 20),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
               ),
-              ElevatedButton(
-                onPressed: () async {
-                  if (_formKey.currentState!.validate()) {
-                    try {
-                      final user = await _auth.createUserWithEmailAndPassword(
-                        email: _emailController.text,
-                        password: _passwordController.text,
-                      );
-                      if (user != null) {
-                        Navigator.pushNamed(context, '/home');
-                      }
-                    } catch (e) {
-                      showDialog(
-                        context: context,
-                        builder: (context) {
-                          return AlertDialog(
-                            title: Text('Error'),
-                            content: Text(e.toString()),
-                            actions: <Widget>[
-                              TextButton(
-                                child: Text('OK'),
-                                onPressed: () {
-                                  Navigator.of(context).pop();
-                                },
-                              ),
-                            ],
-                          );
-                        },
-                      );
-                    }
-                  }
-                },
-                child: const Text('Sign Up'),
-              ),
-            ],
+            ),
           ),
-        ),
+        ],
       ),
     );
   }
