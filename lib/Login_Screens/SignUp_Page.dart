@@ -38,7 +38,7 @@ class _SignUp_PageState extends State<SignUp_Page> {
               ]),
             ),
             child: const Padding(
-              padding: EdgeInsets.only(top: 50.0, left: 20),
+              padding: EdgeInsets.only(top: 60.0, left: 20),
               child: Text(
                 "Create Your\nAccount!",
                 style: TextStyle(
