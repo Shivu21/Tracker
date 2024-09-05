@@ -12,8 +12,8 @@ Welcome to **Tracker**, your all-in-one solution for boosting productivity, trac
 - **User-Friendly Interface**: A simple, intuitive design to minimize distractions.
 
 ## Screenshots
-(You can add screenshots here to showcase the app's design)
-
+### Home Screen
+![PomoDoro Screen](assets/images/screenshot1.png)
 ## Getting Started
 
 To get started with **Tracker**, follow these steps:
