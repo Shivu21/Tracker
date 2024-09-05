@@ -13,7 +13,7 @@ Welcome to **Tracker**, your all-in-one solution for boosting productivity, trac
 
 ## Screenshots
 ### Home Screen
-![PomoDoro Screen](assets/images/screenshot1.png)
+![PomoDoro](assets/images/screenshot1.png)
 ## Getting Started
 
 To get started with **Tracker**, follow these steps:
