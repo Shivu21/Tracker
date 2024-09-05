@@ -20,4 +20,8 @@ To get started with **Tracker**, follow these steps:
 
 1. Clone this repository:
    ```bash
+<<<<<<< HEAD
    git clone https://github.com/your-username/tracker.git
+=======
+   git clone https://github.com/your-username/tracker.git
+>>>>>>> 9a5515d (Update)
